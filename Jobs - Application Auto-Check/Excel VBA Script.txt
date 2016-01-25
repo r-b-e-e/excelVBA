@@ -1,0 +1,60 @@
+Sub format()
+Dim trimmingAuto As String
+Dim j
+j = 0
+
+For i = 0 To 99
+    Sheets("Sheet2").Select
+    Range("A1").Select
+    trimmingAuto = Selection.Offset(i, 0).Value
+    
+    If trimmingAuto = "Working Title" Or trimmingAuto = "View" Then
+
+    Else
+        Sheets("Sheet3").Select
+        Range("A1").Select
+        Selection.Offset(j, 0).Value = trimmingAuto
+        j = j + 1
+    End If
+Next i
+
+End Sub
+
+
+
+Sub coloring()
+Dim compare
+Dim rowCount
+Dim sheetOneRowCount
+rowCount = Worksheets("Sheet3").Cells.SpecialCells(xlCellTypeLastCell).Row
+rowCount = rowCount - 1
+For i = 0 To rowCount - 1
+    Sheets("Sheet3").Select
+    Range("A2").Select
+    compare = Selection.Offset(i, 0).Value
+    
+    sheetOneRowCount = Worksheets("Sheet1").Cells.SpecialCells(xlCellTypeLastCell).Row
+    For j = 0 To sheetOneRowCount - 1
+        Sheets("Sheet1").Select
+        Range("B1").Select
+        If Selection.Offset(j, 0).Value = compare Then
+            Sheets("Sheet3").Select
+            Range("B2").Select
+            Selection.Offset(i, 0).Value = "Applied"
+            Selection.Offset(i, 0).Interior.ColorIndex = 4
+            Exit For
+        ElseIf compare = "Research Assistant" Or compare = "Transcriptionist/Undergraduate Research Assistant" Or compare = "Freshman Teaching Assistant - ENGR 1202 - Civil - Fall 2015" Or compare = "Video Production Assistant" Or compare = "Freshman Teaching Assistant - ENGR - 1202 - Mechanical - Fall 2015" Then
+            Sheets("Sheet3").Select
+            Range("B2").Select
+            Selection.Offset(i, 0).Value = "Not Eligible"
+            Selection.Offset(i, 0).Interior.ColorIndex = 4
+            Exit For
+        
+        Else
+            Sheets("Sheet3").Select
+            Range("B2").Select
+            Selection.Offset(i, 0).Value = "New"
+        End If
+    Next j
+Next i
+End Sub
