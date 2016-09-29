@@ -49,12 +49,12 @@ myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration
 myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = "smtp.gmail.com"
 myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = 25
 myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2
-myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = "rlingaku@uncc.edu"
-myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = "2+2isfour*R*B*"
+myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = "a@a.com"
+myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = "******"
 
 myMail.Configuration.Fields.Update
 
-Const FileToBeUsed = "F:\2 M.S. Spring 2015 - Spring 2016\Language\TA_Excel_VBA\TA_Excel_VBA\messageBody.txt"
+Const FileToBeUsed = "F:\messageBody.txt"
 Const ForReading = 1
 Const ForWriting = 2
 Const ForAppending = 8
@@ -65,12 +65,12 @@ Set f = fso.OpenTextFile(FileToBeUsed, ForReading)
 
 With myMail
 .Subject = "Teaching Assistantship Opportunity - " & course_number & " - " & course_title
-.From = "rlingaku@uncc.edu"
+.From = "a@a.com"
 .To = to_email_id
-.CC = "rlingaku@uncc.edu"
+.CC = "a@a.com"
 .BCC = ""
 .TextBody = "Prof. " & instructor & "," & vbCrLf & vbCrLf & "My name is Rakesh Balan Lingakumar. I am a graduate student doing my Masters in Computer Science and currently seeking an opportunity as a Teaching Assistant. I am aware that you will be taking the " & course_number & "-" & course_title & " course in the Spring 2016 term." & vbCrLf & vbCrLf & f.ReadAll
-.AddAttachment "F:\2 M.S. Spring 2015 - Spring 2016\Language\TA_Excel_VBA\TA_Excel_VBA\Resume_TA_Rakesh Balan Lingakumar.pdf"
+.AddAttachment "F:\Resume_TA_Rakesh Balan Lingakumar.pdf"
 End With
 On Error Resume Next
 myMail.Send
